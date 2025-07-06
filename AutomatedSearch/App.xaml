@@ -1,0 +1,15 @@
+﻿<Application x:Class="AutomatedSearch.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Style TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Padding" Value="5,0"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="MaxWidth" Value="150"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

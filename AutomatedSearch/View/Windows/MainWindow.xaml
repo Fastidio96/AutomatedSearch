@@ -1,0 +1,86 @@
+﻿<Window x:Class="AutomatedSearch.View.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:worker="clr-namespace:AutomatedSearch.ViewModel.Workers"
+        mc:Ignorable="d"
+        Title="Automated Search" 
+        Height="450" Width="700" 
+        WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <worker:WebViewWorkerUC x:Name="webViewWorker" Grid.Row="1" Grid.Column="0" Visibility="Visible"/>
+
+        <TabControl Grid.Row="0" Grid.Column="0" >
+            <TabItem Header="Accounts" IsSelected="True">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <DataGrid Grid.Row="0" Grid.Column="0" Name="dgAccounts"  AutoGenerateColumns="False"
+                              CanUserAddRows="False" CanUserDeleteRows="False" 
+                              CanUserReorderColumns="False" CanUserSortColumns="True"
+                              SelectionMode="Single">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Username}"/>
+                            <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
+                            <DataGridTextColumn Header="Search progress">
+                                <DataGridTextColumn.Binding>
+                                    <MultiBinding StringFormat="{}{0}/{1}">
+                                        <Binding Path="CurrentDailySearch"/>
+                                        <Binding Path="MaxDailySearch"/>
+                                    </MultiBinding>
+                                </DataGridTextColumn.Binding>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Points" Binding="{Binding TotalPoints}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Grid.Row="0" Grid.Column="1">
+                        <Button Name="btnAddAcc" Content="Add account" Margin="0,10" Padding="5" Click="btnAddAcc_Click"/>
+                        <Button Name="btnRemoveAcc" Content="Remove account" Margin="0,10" Padding="5" Click="btnRemoveAcc_Click"/>
+                    </StackPanel>
+                    
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="Application Settings">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                </Grid>
+
+            </TabItem>
+        </TabControl>
+
+        
+    </Grid>
+</Window>
